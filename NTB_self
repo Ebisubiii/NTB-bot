@@ -1690,9 +1690,9 @@ def bot(op):
                                 kk.sendText(msg.to,)
                                 kc.sendText(msg.to,)
                             except:
-                                ki.sendText(msg.to,")
-                                kk.sendText(msg.to,")
-                                kc.sendText(msg.to,")
+                                ki.sendText(msg.to,)
+                                kk.sendText(msg.to,)
+                                kc.sendText(msg.to,)
 #-----------------------------------------------
             elif msg.text in ["Test"]:
                 ki.sendText(msg.to,"Ok  􀨁􀄻double thumbs up􏿿")
