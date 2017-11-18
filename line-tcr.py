@@ -51,7 +51,7 @@ helpMessage =""" NTB BOT V.01
 ► Gn 「group name」
 ► Nk 「name」
 ► Bc
-► List Group
+► Glist
 ► Auto like
 ► Auto Join
 ► Bye
@@ -86,7 +86,7 @@ Bmid = kk.getProfile().mid
 Cmid = kc.getProfile().mid
 
 Bots=[mid,Amid,Bmid,Cmid]
-admin=["YOUR_MID_HERE"]
+admin=["uc77fd25b59f6e563d84f1334f3fed10b"]
 wait = {
     'contact':True,
     'autoJoin':True,
@@ -96,7 +96,7 @@ wait = {
     'autoAdd':True,
     'message':"Thanks for add me",
     "lang":"JP",
-    "comment":"Thanks for add me",
+    "comment":"Thanks for add me Contact me line.me/ti/p/~enr7503k",
     "commentOn":False,
     "commentBlack":{},
     "wblack":False,
@@ -423,7 +423,7 @@ def bot(op):
             if msg.contentType == 16:
                 url = msg.contentMetadata("line://home/post?userMid="+mid+"&postId="+"new_post")
                 cl.like(url[25:58], url[66:], likeType=1001)
-        if op.type == 26:
+        if op.type == 25:
             msg = op.message
             if msg.contentType == 13:
                if wait["wblack"] == True:
@@ -1524,6 +1524,30 @@ def bot(op):
 					cl.sendText(msg.to,"PROTECT INVITE ON")
 				except:
 					pass     
+#-----------------------------------------------------------------
+            elif msg.text in ["Creator"]:
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': Creator}
+                cl.sendMessage(msg)
+		cl.sendText(msg.to,"Itu Yang Bikin BOT")
+#-----------------------------------------------------------------
+            elif msg.text in ["Group creator","Gcreator","gcreator"]:
+		ginfo = cl.getGroup(msg.to)
+		gCreator = ginfo.creator.mid
+                msg.contentType = 13
+                msg.contentMetadata = {'mid': gCreator}
+                cl.sendMessage(msg)
+		cl.sendText(msg.to,"Itu Yang Buat Grup Ini")
+#-----------------------------------------------------------------
+            elif msg.text in ["Glist"]:
+                gid = cl.getGroupIdsJoined()
+                h = ""
+		jml = 0
+                for i in gid:
+		    gn = cl.getGroup(i).name
+                    h += "♦【%s】\n" % (gn)
+		    jml += 1
+                cl.sendText(msg.to,"======[List Group]======\n"+ h +"Total group: "+str(jml))
 #--------------------------------------------------------------
             elif msg.text in ["Kill"]:
                 if msg.toType == 2:
