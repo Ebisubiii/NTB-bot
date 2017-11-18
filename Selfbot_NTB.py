@@ -70,9 +70,6 @@ helpMessage =""" NTB BOT V.01
 ► Respo︎n
 ► Bot cancel
 ► ResponK
-► Qr : ON/OFF
-► Namelock : ON/OFF
-► Blockinvite : ON/OFF
 
  Pembuat Selfbot OA line.me/ti/p/~@enr7503k
  Owner Team line.me/ti/p/~ebisuindo
@@ -1548,6 +1545,43 @@ def bot(op):
                     h += "♦【%s】\n" % (gn)
 		    jml += 1
                 cl.sendText(msg.to,"======[List Group]======\n"+ h +"Total group: "+str(jml))
+#--------------------------------[KICK OUT GROUP]---------------------------------
+               if op.type == 19:
+		if wait["AutoKick"] == True:
+                    if op.param2 in admin:
+                        pass
+                    try:
+                        cl.kickoutFromGroup(op.param1,[op.param2])
+			cl.inviteIntoGroup(op.param1,[op.param3])
+                    except:
+                        try:
+			    cl.kickoutFromGroup(op.param1,[op.param2])
+			    cl.inviteIntoGroup(op.param1,[op.param3])
+                        except:
+                            print ("client Kick regulation or Because it does not exist in the group\ngid=["+op.param1+"]\nmid=["+op.param2+"]")
+                        if op.param2 in wait["blacklist"]:
+                            pass
+                        else:
+			    if op.param2 in admin:
+			        pass
+			    else:
+                                wait["blacklist"][op.param2] = True
+                    if op.param2 in wait["blacklist"]:
+                        pass
+                    else:
+		        if op.param2 in admin:
+			    pass
+		        else:
+                            wait["blacklist"][op.param2] = True
+#-----------------------------[Qr Protect]----------------
+              if op.type == 11:
+            if wait["Qr"] == True:
+		if op.param2 in admin:
+		    pass
+		else:
+                    cl.sendText(msg.to, "Jangan mainan QR ntr ada kicker")
+            else:
+                pass
 #--------------------------------------------------------------
             elif msg.text in ["Kill"]:
                 if msg.toType == 2:
